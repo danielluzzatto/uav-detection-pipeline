@@ -1,3 +1,35 @@
+# Virtual Environment
 .venv/
+env/
+venv/
+
+# Data & Dataset (Too large for GitHub)
 data/
-baseline.zip
+*.zip
+*.tar.gz
+
+# YOLO/Ultralytics Junk
+__pycache__/
+.ipynb_checkpoints/
+# We keep the plots in runs/, but ignore the debug training batches
+runs/**/train_batch*.jpg
+runs/**/val_batch*_labels.jpg
+runs/**/val_batch*_pred.jpg
+
+# Large Weights & Temporary Models
+# Keep your final model in /models/ manually, but ignore others
+models/*.pt
+!models/uav_detector_final.pt
+runs/**/weights/epoch*.pt
+runs/**/weights/last.pt
+
+# Output Videos & Media
+output*
+*.mp4
+*.avi
+screenshots/
+detect/
+
+# Local/Development Scripts
+test_pipeline.py
+.DS_Store
