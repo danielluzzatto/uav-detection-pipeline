@@ -1,2 +1,8 @@
-opencv_python==4.13.0.92
+fiftyone==1.15.0
+fiftyone_brain==0.21.6
+fiftyone_db==1.4.1
+numpy==2.4.4
+opencv_contrib_python==4.11.0.86
+opencv_python_headless==4.13.0.92
+sahi==0.11.36
 ultralytics==8.4.48

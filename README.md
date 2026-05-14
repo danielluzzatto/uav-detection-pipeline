@@ -1,52 +1,47 @@
-# AeroSentry UAV Detection
-### Prototype Perception Pipeline for Jetson Orin Nano
+# AeroSentry: Robust UAV Perception Pipeline
+### AI-Driven Fixed-Wing Detection for Autonomous Interceptor Systems
 
-This repository contains a YOLOv11-based detection pipeline designed to identify fixed-wing UAVs from an interceptor drone platform.
-
----
-
-## 1. Dataset Overview
-The dataset contains high-density polygon annotations of UAVs.
-
-* **Train:** 2,835 images (2,892 instances)
-* **Valid:** 115 images (118 instances)
-* **Test:** 159 images (164 instances)
-* **Format:** YOLOv11 (1 Class: `uav`)
-
-## 2. Model & Baseline Training
-The **YOLOv11n (Nano)** architecture was chosen for its low latency (~3.4ms on T4) and 2.6M parameter efficiency, making it ideal for the **Jetson Orin Nano**.
-
-### Baseline Configuration
-| Parameter | Value |
-| :--- | :--- |
-| **Model** | `yolo11n.pt` |
-| **Input Size** | 640x640 |
-| **Epochs** | 150 |
-| **Optimizer** | SGD (lr0: 0.01, cos_lr: True) |
-| **Augmentation** | Mosaic (1.0), Degrees (15.0), HSV (0.4) |
-
-## 3. Results Summary
-
-### Baseline
-* **mAP50:** ~0.85
-* **Recall:** 0.89 (High sensitivity for interceptor triggers)
-* **Inference Speed:** ~3.4ms (T4) / Projected ~40+ FPS (Orin Nano)
-* **Key Challenge:** Model currently shows vulnerability to 2D media (posters/billboards) and cloud edges due to a lack of background negative samples.
-
-## 4. Next Steps
-* **FP Suppression:** Implement temporal voting logic (detection must persist for >3 frames).
-* **Hard Negative Mining:** Add unlabeled images of clouds/birds to the training set.
-* **Edge Optimization:** Export to **TensorRT (FP16)** for deployment.
+This repository contains a high-performance detection and tracking pipeline based on **YOLO11n**, optimized for deployment on the **NVIDIA Jetson Orin Nano**. The system is specifically tuned to identify fixed-wing UAVs in challenging sky-region environments with high-velocity motion.
 
 ---
 
-## Setup & Inference
+## 1. System Architecture
+The pipeline employs a multi-stage approach to balance sensitivity and precision:
+* **Perception:** YOLO11n (2.6M parameters) for real-time feature extraction.
+* **False Positive Reduction:** Class-discriminative training using hard-negative mining (avian distractors).
+* **Temporal Logic (Proposed):** Kalman Filter-based state estimation to suppress transient false triggers (clouds/sun glare).
 
+## 2. Dataset & Training
+The model was trained on a high-density dataset of fixed-wing signatures, utilizing aggressive augmentation to handle the "jitter" and motion blur inherent in interceptor-mounted footage.
+
+### Dataset Distribution (Post-Augmentation)
+* **Total Training Samples:** ~3,400 images
+* **Target Class:** `uav` (Fixed-wing drones)
+* **Hard Negatives:** Integrated ~300 background samples of avian distractors (birds) to reduce false engagement triggers.
+
+### Training Configuration
+| Parameter | Value | Justification |
+| :--- | :--- | :--- |
+| **Model** | `yolo11n.pt` | Optimization for Jetson Orin Nano TensorRT export. |
+| **Input Size** | 640px | Trade-off for small-target detection vs. 40+ FPS latency. |
+| **Augmentation** | Mosaic, Copy-Paste, HSV | Simulation of varied sky conditions and scale variance. |
+| **Optimizer** | SGD (lr0: 0.01) | Robust convergence for binary classification tasks. |
+
+## 3. Results & Evaluation
+* **Baseline mAP50:** ~0.85
+* **Key Improvement:** Iterative background mining reduced avian False Positives by identifying birds as background noise rather than UAV signatures.
+
+---
+
+## 4. Setup & Deployment
+
+### Installation
 ```bash
-# Clone and Install
-git clone [https://github.com/YOUR_USERNAME/aerosentry-uav-detection.git](https://github.com/YOUR_USERNAME/aerosentry-uav-detection.git)
-cd aerosentry-uav-detection
-pip install ultralytics
+# Clone the repository
+git clone [https://github.com/danielluzzatto/uav-detection-pipeline.git](https://github.com/danielluzzatto/uav-detection-pipeline.git)
+cd uav-detection-pipeline
 
-# Inference with trained weights
-python -c "from ultralytics import YOLO; model = YOLO('models/best.pt'); model.predict(source='data/test/', save=True)"
+# Setup Environment
+python -m venv .venv
+source .venv/bin/activate  # Linux/macOS
+pip install -r requirements.txt

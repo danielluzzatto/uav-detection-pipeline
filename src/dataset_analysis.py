@@ -15,7 +15,6 @@ def analyze_split(split_dir: Path, class_names: list[str]):
         return
 
     image_files = list(img_dir.glob("*.*"))
-    label_files = list(lbl_dir.glob("*.txt")) if lbl_dir.exists() else []
 
     images_with_label = 0
     images_without_label = 0
