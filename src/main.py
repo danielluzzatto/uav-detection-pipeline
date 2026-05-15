@@ -18,7 +18,7 @@ from sahi.predict import get_sliced_prediction
 from ultralytics import YOLO
 
 # Config ────────────────────────────────────────────────────────────────────
-WEIGHTS_PATH = 'runs/aug_run_12May18-01/weights/best.pt'
+WEIGHTS_PATH = 'runs/May14-01-21/weights/best.pt' 
 CONF_THRESH = 0.15
 SLICE_SIZE = 256
 OVERLAP_RATIO = 0.3
@@ -31,7 +31,6 @@ MAX_AREA_FRAC = 0.12
 MIN_TRACK_AGE = 3
 SKY_GATE_Y = 0.65
 MIN_ASPECT = 0.3
-MAX_PX_PER_FRAME = 80 # need to be changed
 CSRT_MAX_AGE = 30
 
 FRAME_W, FRAME_H = 1280, 720
@@ -192,19 +191,30 @@ def within_size_gate(new_w, new_h, tracker, max_growth=2.5, max_shrink=0.2) -> b
         return False
     return True
 
-def within_motion_gate(new_box, prev_cx, prev_cy, frames_elapsed,
-                       max_px_per_frame=MAX_PX_PER_FRAME) -> bool:
+def within_motion_gate(new_box, prev_cx, prev_cy, frames_elapsed, 
+                       img_w, box_scale_factor=1.5) -> bool:
     """
-    Compares new detection center to the last confirmed detector hit center. This avoids the feedback loop where a corrupted
-    Kalman velocity causes the gate to reject a good detection.
-    Only called when kalman.confirmed is True.
+    Modular motion gate that scales based on the size of the detection.
+    Allows for larger jumps when the target is closer (larger box).
     """
-    new_cx      = (new_box[0] + new_box[2]) / 2
-    new_cy      = (new_box[1] + new_box[3]) / 2
-    dist        = np.sqrt((new_cx - prev_cx)**2 + (new_cy - prev_cy)**2)
-    max_allowed = max_px_per_frame * frames_elapsed
+    new_cx = (new_box[0] + new_box[2]) / 2
+    new_cy = (new_box[1] + new_box[3]) / 2
+    
+    box_w = new_box[2] - new_box[0]
+    box_h = new_box[3] - new_box[1]
+    drone_size = max(box_w, box_h)
+    
+    # Logic: max jump = (Size of Drone) * (Velocity Factor) * (Time)
+    # Plus a small constant floor (e.g., 1% of screen) to handle very small specks
+    base_limit = img_w * 0.01 
+    dynamic_limit = (drone_size * box_scale_factor) + base_limit
+    
+    max_allowed = dynamic_limit * frames_elapsed
+    
+    dist = np.sqrt((new_cx - prev_cx)**2 + (new_cy - prev_cy)**2)
+    
     if dist > max_allowed:
-        print(f"    motion gate: dist={dist:.1f} > max={max_allowed:.1f} → rejected")
+        print(f"    motion gate: dist={dist:.1f} > max={max_allowed:.1f} (size={drone_size:.1f}) → rejected")
         return False
     return True
 
@@ -276,6 +286,8 @@ def roi_inference(yolo, frame_pre, cx, cy, w, h, scale=ROI_SCALE):
     # predict only a bbox per frame. Assume there is only one uav
     best_conf, best_box = 0, None
     for box in results.boxes:
+        if int(box.cls.item()) != 1:  # 1 = uav
+            continue
         conf = box.conf.item()
         if conf <= best_conf:
             continue
@@ -303,6 +315,8 @@ def full_frame_inference(sahi, frame_pre, tmp="/tmp/sahi_in.jpg"):
 
     best_conf, best_box = 0, None
     for p in preds:
+        if p.category.name != 'uav':  # reject 'none' class
+            continue
         x1, y1, x2, y2 = p.bbox.to_xyxy()
         if not is_valid_detection(x1, y1, x2, y2):
             continue
@@ -343,6 +357,8 @@ def run_pipeline(video_path: str, output_video_path: str = "output.mp4", output_
         return
 
     fps = cap.get(cv2.CAP_PROP_FPS)
+    FRAME_W = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    FRAME_H = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     writer = cv2.VideoWriter(output_video_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (FRAME_W, FRAME_H))
 
@@ -355,7 +371,7 @@ def run_pipeline(video_path: str, output_video_path: str = "output.mp4", output_
     start = time.time()
 
     print(f"Video: {FRAME_W}x{FRAME_H} @ {fps:.1f}fps — {total} frames")
-    print(f"Inference every {infer_every} frames | motion gate {MAX_PX_PER_FRAME}px/frame\n")
+    print(f"Inference every {infer_every} frames \n")
 
     while True:
         ret, frame = cap.read()
@@ -397,12 +413,9 @@ def run_pipeline(video_path: str, output_video_path: str = "output.mp4", output_
                         box = None 
                 
                 if box is not None and kalman.confirmed:
+                    h, w = frame.shape[:2]
                     frames_elapsed = kalman.frames_since_valid + current_infer_every
-                    if not within_motion_gate(box,
-                                              kalman.last_valid_cx,
-                                              kalman.last_valid_cy,
-                                              frames_elapsed):
-                        print(f"  Frame {frame_id:05d}: motion gate rejection")
+                    if not within_motion_gate(box, kalman.last_valid_cx, kalman.last_valid_cy, frames_elapsed, img_w=w):
                         box = None
 
                 # If there is no box increase kalman misses, if they r more than 3 reset kalman filter and tracker

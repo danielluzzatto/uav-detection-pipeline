@@ -1,0 +1,1178 @@
+[
+  {
+    "frame_id": 1364,
+    "bbox": [
+      1199.22,
+      411.25,
+      1240.35,
+      447.05
+    ],
+    "score": 0.2245,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1365,
+    "bbox": [
+      1194.0,
+      415.0,
+      1235.0,
+      451.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1366,
+    "bbox": [
+      1188.53,
+      417.12,
+      1232.89,
+      455.33
+    ],
+    "score": 0.1952,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1367,
+    "bbox": [
+      1184.0,
+      421.0,
+      1227.0,
+      458.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1369,
+    "bbox": [
+      1175.0,
+      427.0,
+      1218.0,
+      464.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1371,
+    "bbox": [
+      1167.0,
+      433.0,
+      1209.0,
+      470.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1373,
+    "bbox": [
+      1157.0,
+      437.0,
+      1200.0,
+      474.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1375,
+    "bbox": [
+      1147.0,
+      441.0,
+      1192.0,
+      480.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1377,
+    "bbox": [
+      1137.0,
+      444.0,
+      1186.0,
+      486.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1379,
+    "bbox": [
+      1117.71,
+      461.58,
+      1162.83,
+      500.46
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1381,
+    "bbox": [
+      1098.55,
+      474.2,
+      1143.66,
+      513.08
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1410,
+    "bbox": [
+      1748.71,
+      345.93,
+      1781.24,
+      375.34
+    ],
+    "score": 0.1783,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1411,
+    "bbox": [
+      1264.41,
+      347.53,
+      1280,
+      377.01
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1412,
+    "bbox": [
+      1753.1,
+      346.94,
+      1787.76,
+      375.33
+    ],
+    "score": 0.162,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1413,
+    "bbox": [
+      1263.89,
+      347.7,
+      1280,
+      376.86
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1415,
+    "bbox": [
+      1263.89,
+      349.07,
+      1280,
+      378.22
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1417,
+    "bbox": [
+      1263.89,
+      350.44,
+      1280,
+      379.59
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1418,
+    "bbox": [
+      1764.89,
+      352.53,
+      1801.29,
+      381.08
+    ],
+    "score": 0.1756,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1419,
+    "bbox": [
+      1263.26,
+      353.02,
+      1280,
+      381.99
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1420,
+    "bbox": [
+      1768.3,
+      354.78,
+      1799.69,
+      381.82
+    ],
+    "score": 0.1592,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1421,
+    "bbox": [
+      1263.58,
+      354.92,
+      1280,
+      383.31
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1423,
+    "bbox": [
+      1263.58,
+      356.54,
+      1280,
+      384.93
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1425,
+    "bbox": [
+      1263.58,
+      358.16,
+      1280,
+      386.56
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1426,
+    "bbox": [
+      1789.83,
+      368.41,
+      1819.95,
+      399.43
+    ],
+    "score": 0.1576,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1427,
+    "bbox": [
+      1263.99,
+      369.2,
+      1280,
+      398.38
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1429,
+    "bbox": [
+      1263.99,
+      373.11,
+      1280,
+      402.29
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1430,
+    "bbox": [
+      1798.04,
+      378.53,
+      1827.51,
+      406.86
+    ],
+    "score": 0.159,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1431,
+    "bbox": [
+      1264.37,
+      379.68,
+      1280,
+      408.6
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1433,
+    "bbox": [
+      1264.37,
+      384.21,
+      1280,
+      413.14
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1434,
+    "bbox": [
+      1804.03,
+      381.76,
+      1834.01,
+      412.43
+    ],
+    "score": 0.1652,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1435,
+    "bbox": [
+      1264.56,
+      385.3,
+      1280,
+      414.75
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1437,
+    "bbox": [
+      1264.56,
+      389.03,
+      1280,
+      418.48
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1438,
+    "bbox": [
+      1806.34,
+      385.62,
+      1834.17,
+      413.2
+    ],
+    "score": 0.1553,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1439,
+    "bbox": [
+      1265.02,
+      387.89,
+      1280,
+      416.78
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1441,
+    "bbox": [
+      1265.02,
+      390.3,
+      1280,
+      419.19
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1443,
+    "bbox": [
+      1265.02,
+      392.71,
+      1280,
+      421.6
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1476,
+    "bbox": [
+      1823.51,
+      405.1,
+      1852.17,
+      433.63
+    ],
+    "score": 0.1606,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1477,
+    "bbox": [
+      1263.86,
+      403.41,
+      1280,
+      433.93
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1479,
+    "bbox": [
+      1263.86,
+      464.8,
+      1280,
+      495.31
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1481,
+    "bbox": [
+      1263.86,
+      526.19,
+      1280,
+      556.7
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1566,
+    "bbox": [
+      825.93,
+      225.85,
+      861.61,
+      256.48
+    ],
+    "score": 0.1583,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1567,
+    "bbox": [
+      825.0,
+      223.0,
+      861.0,
+      254.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1569,
+    "bbox": [
+      824.0,
+      220.0,
+      861.0,
+      252.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1570,
+    "bbox": [
+      823.67,
+      218.61,
+      861.56,
+      250.33
+    ],
+    "score": 0.1683,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1571,
+    "bbox": [
+      822.0,
+      218.0,
+      859.0,
+      249.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1573,
+    "bbox": [
+      821.0,
+      217.0,
+      859.0,
+      249.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1575,
+    "bbox": [
+      819.0,
+      216.0,
+      857.0,
+      248.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1577,
+    "bbox": [
+      817.0,
+      216.0,
+      857.0,
+      249.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1579,
+    "bbox": [
+      814.0,
+      217.0,
+      854.0,
+      250.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1581,
+    "bbox": [
+      810.0,
+      221.0,
+      850.0,
+      254.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1583,
+    "bbox": [
+      811.0,
+      222.0,
+      848.0,
+      253.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1585,
+    "bbox": [
+      805.0,
+      225.0,
+      842.0,
+      256.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1587,
+    "bbox": [
+      805.0,
+      225.0,
+      843.0,
+      257.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1589,
+    "bbox": [
+      805.0,
+      226.0,
+      843.0,
+      258.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1590,
+    "bbox": [
+      804.46,
+      225.49,
+      841.4,
+      257.13
+    ],
+    "score": 0.1661,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1591,
+    "bbox": [
+      804.0,
+      225.0,
+      841.0,
+      257.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1592,
+    "bbox": [
+      797.51,
+      225.51,
+      837.54,
+      260.8
+    ],
+    "score": 0.2074,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1593,
+    "bbox": [
+      797.0,
+      226.0,
+      837.0,
+      261.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1595,
+    "bbox": [
+      798.0,
+      227.0,
+      839.0,
+      263.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1596,
+    "bbox": [
+      806.17,
+      229.75,
+      840.6,
+      258.95
+    ],
+    "score": 0.1519,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1597,
+    "bbox": [
+      806.0,
+      230.0,
+      840.0,
+      259.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1599,
+    "bbox": [
+      809.0,
+      230.0,
+      843.0,
+      259.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1601,
+    "bbox": [
+      808.0,
+      232.0,
+      843.0,
+      262.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1603,
+    "bbox": [
+      811.0,
+      234.0,
+      845.0,
+      263.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1605,
+    "bbox": [
+      814.0,
+      235.0,
+      846.0,
+      262.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1606,
+    "bbox": [
+      805.15,
+      233.23,
+      847.74,
+      269.41
+    ],
+    "score": 0.1626,
+    "class": "airborne_fixed_wing",
+    "source": "detector"
+  },
+  {
+    "frame_id": 1607,
+    "bbox": [
+      805.0,
+      232.0,
+      850.0,
+      270.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1609,
+    "bbox": [
+      810.0,
+      232.0,
+      854.0,
+      269.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1611,
+    "bbox": [
+      815.0,
+      233.0,
+      857.0,
+      269.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1613,
+    "bbox": [
+      822.0,
+      232.0,
+      865.0,
+      269.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1615,
+    "bbox": [
+      828.0,
+      231.0,
+      871.0,
+      268.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1617,
+    "bbox": [
+      836.0,
+      232.0,
+      878.0,
+      268.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1619,
+    "bbox": [
+      842.0,
+      231.0,
+      887.0,
+      269.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1621,
+    "bbox": [
+      848.0,
+      230.0,
+      892.0,
+      267.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1623,
+    "bbox": [
+      853.0,
+      227.0,
+      895.0,
+      263.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1625,
+    "bbox": [
+      861.0,
+      228.0,
+      901.0,
+      263.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1627,
+    "bbox": [
+      865.0,
+      228.0,
+      904.0,
+      261.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1629,
+    "bbox": [
+      867.0,
+      225.0,
+      907.0,
+      259.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1631,
+    "bbox": [
+      869.0,
+      225.0,
+      908.0,
+      258.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1633,
+    "bbox": [
+      872.0,
+      225.0,
+      911.0,
+      258.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1635,
+    "bbox": [
+      872.0,
+      224.0,
+      911.0,
+      257.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1637,
+    "bbox": [
+      876.0,
+      223.0,
+      914.0,
+      256.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1639,
+    "bbox": [
+      878.0,
+      221.0,
+      915.0,
+      252.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1641,
+    "bbox": [
+      881.0,
+      217.0,
+      921.0,
+      251.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1643,
+    "bbox": [
+      883.0,
+      212.0,
+      923.0,
+      246.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1645,
+    "bbox": [
+      884.0,
+      206.0,
+      924.0,
+      240.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1647,
+    "bbox": [
+      884.0,
+      201.0,
+      924.0,
+      235.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1649,
+    "bbox": [
+      882.0,
+      197.0,
+      922.0,
+      231.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1651,
+    "bbox": [
+      883.0,
+      195.0,
+      923.0,
+      229.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1653,
+    "bbox": [
+      883.0,
+      195.0,
+      923.0,
+      230.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1655,
+    "bbox": [
+      885.0,
+      195.0,
+      925.0,
+      229.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1657,
+    "bbox": [
+      889.0,
+      194.0,
+      927.0,
+      227.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1659,
+    "bbox": [
+      891.0,
+      194.0,
+      931.0,
+      228.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1661,
+    "bbox": [
+      892.0,
+      194.0,
+      930.0,
+      227.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1663,
+    "bbox": [
+      892.0,
+      194.0,
+      930.0,
+      227.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1665,
+    "bbox": [
+      891.0,
+      190.0,
+      928.0,
+      222.0
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "csrt"
+  },
+  {
+    "frame_id": 1667,
+    "bbox": [
+      893.93,
+      186.77,
+      932.16,
+      219.76
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  },
+  {
+    "frame_id": 1669,
+    "bbox": [
+      895.62,
+      184.1,
+      933.85,
+      217.1
+    ],
+    "score": 0.0,
+    "class": "airborne_fixed_wing",
+    "source": "kalman"
+  }
+]
