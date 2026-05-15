@@ -74,6 +74,7 @@ def mine_hard_negatives(target_class, output_base):
         label_types=["detections"],
         classes=[target_class],
         max_samples=N_COCO_SAMPLES,
+        shuffle=True,
     )
 
     count = 0

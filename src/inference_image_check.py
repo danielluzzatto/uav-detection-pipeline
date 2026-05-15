@@ -4,28 +4,23 @@ Run the model at inference to get the stats of test val and adversarial (can use
 
 from ultralytics import YOLO
 
-MODEL_PATH = 'runs/aug_run_12May18-01/weights/best.pt'
-DATA_YAML = 'data/augmented_data/data.yaml'
+MODEL_PATH = 'runs/May14-01-21/weights/best.pt'
+DATA_YAML = 'data/augmented_data/test_airplanes/data.yaml'
 
-def evaluate_model(split='val'):
-    """
-    Evaluates the model on a specific split: 'train', 'val', or 'test', 'test_adversarial'.
-    """
+def evaluate_model():
     model = YOLO(MODEL_PATH)
     
     results = model.val(
         data=DATA_YAML,
-        split=split,
+        split='test', 
         imgsz=640,
         plots=True,
         save_json=True,
         verbose=True
     )
     
-    print(f"Results for {split} split:")
-    print(f"mAP50: {results.results_dict['metrics/mAP50(B)']:.4f}")
-
+    print(f"Adversarial Results:")
+    print(f"results: {results.results_dict}")
 
 if __name__ == "__main__":
-    # val test or test_birds
-    evaluate_model(split='test_birds')
+    evaluate_model()
