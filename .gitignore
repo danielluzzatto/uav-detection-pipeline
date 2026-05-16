@@ -33,3 +33,6 @@ detect/
 # Local/Development Scripts
 test_pipeline.py
 .DS_Store
+
+src/test.py
+src/export_onnx.py

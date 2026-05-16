@@ -18,7 +18,7 @@ from sahi.predict import get_sliced_prediction
 from ultralytics import YOLO
 
 # Config ────────────────────────────────────────────────────────────────────
-WEIGHTS_PATH = 'runs/May14-01-21/weights/best.pt' 
+WEIGHTS_PATH = 'runs/May14-01-21/weights/best.onnx' #choose onnx or pt
 CONF_THRESH = 0.15
 SLICE_SIZE = 256
 OVERLAP_RATIO = 0.3
@@ -152,7 +152,7 @@ class CSRTTracker:
         self.age += 1
 
         if self.age > CSRT_MAX_AGE:
-            print("  CSRT stale (>30 frames) -> falling back to pure Kalman")
+            #print("  CSRT stale (>30 frames) -> falling back to pure Kalman")
             self.active = False
             return None
         if not self.active or self._tracker is None:
@@ -187,7 +187,7 @@ def within_size_gate(new_w, new_h, tracker, max_growth=2.5, max_shrink=0.2) -> b
     growth_ratio = new_area / current_area
     
     if growth_ratio > max_growth or growth_ratio < max_shrink:
-        print(f"    size gate: ratio={growth_ratio:.2f} rejected")
+        #print(f"    size gate: ratio={growth_ratio:.2f} rejected")
         return False
     return True
 
@@ -214,7 +214,7 @@ def within_motion_gate(new_box, prev_cx, prev_cy, frames_elapsed,
     dist = np.sqrt((new_cx - prev_cx)**2 + (new_cy - prev_cy)**2)
     
     if dist > max_allowed:
-        print(f"    motion gate: dist={dist:.1f} > max={max_allowed:.1f} (size={drone_size:.1f}) → rejected")
+        #print(f"    motion gate: dist={dist:.1f} > max={max_allowed:.1f} (size={drone_size:.1f}) → rejected")
         return False
     return True
 
@@ -353,7 +353,7 @@ def run_pipeline(video_path: str, output_video_path: str = "output.mp4", output_
     yolo, sahi = load_models()
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
-        print(f"Error: could not open {video_path}")
+        #print(f"Error: could not open {video_path}")
         return
 
     fps = cap.get(cv2.CAP_PROP_FPS)
@@ -368,6 +368,7 @@ def run_pipeline(video_path: str, output_video_path: str = "output.mp4", output_
     frame_id = 0
     det_count = 0
     current_infer_every = infer_every
+    detection_type = {"ROI": 0, "ROI x2": 0, "ROI x4": 0, "full_frame_search": 0, 'full_frame_fallback': 0}
     start = time.time()
 
     print(f"Video: {FRAME_W}x{FRAME_H} @ {fps:.1f}fps — {total} frames")
@@ -395,21 +396,28 @@ def run_pipeline(video_path: str, output_video_path: str = "output.mp4", output_
                 box, conf = roi_inference(yolo, processed, cx, cy, w, h)
 
                 # If there is nothing in the ROI, expand it by 2x and check there
-                if box is None:
+                if box is not None:
+                    detection_type["ROI"] +=1
+                else:
                     box, conf = roi_inference(yolo, processed, cx, cy, w * 2, h * 2, scale=1.0)
-                # if still none, expand by 4
-                if box is None:
-                    box, conf = roi_inference(yolo, processed, cx, cy, w * 4, h * 4, scale=1.0)
-                # Otherwise fallback on the full frame checking (sahi and so on)
-                if box is None:
-                    print(f"  Frame {frame_id:05d}: ROI miss → full-frame fallback")
-                    box, conf = full_frame_inference(sahi, processed)
+                    # if still none, expand by 4
+                    if box is not None:
+                        detection_type["ROI x2"] +=1
+                    else:
+                        box, conf = roi_inference(yolo, processed, cx, cy, w * 4, h * 4, scale=1.0)
+                    # Otherwise fallback on the full frame checking (sahi and so on)
+                        if box is not None: 
+                            detection_type["ROI x4"] +=1
+                        else:
+                            #print(f"  Frame {frame_id:05d}: ROI miss → full-frame fallback")
+                            box, conf = full_frame_inference(sahi, processed)
+                            detection_type["full_frame_fallback"] +=1
 
                 # If there is a box but it is of a bad size (too big or too small) discard it
                 if box is not None:
                     bw, bh = box[2] - box[0], box[3] - box[1]
                     if not within_size_gate(bw, bh, kalman):
-                        print(f"  Frame {frame_id:05d}: Size gate rejection")
+                        #print(f"  Frame {frame_id:05d}: Size gate rejection")
                         box = None 
                 
                 if box is not None and kalman.confirmed:
@@ -422,7 +430,7 @@ def run_pipeline(video_path: str, output_video_path: str = "output.mp4", output_
                 if box is None:
                     kalman.misses += 1
                     if kalman.misses >= 3:
-                        print(f"  Frame {frame_id:05d}: track lost")
+                        #print(f"  Frame {frame_id:05d}: track lost")
                         kalman = None
                         csrt.reset()
                         current_infer_every = infer_every
@@ -432,6 +440,7 @@ def run_pipeline(video_path: str, output_video_path: str = "output.mp4", output_
             else: 
                 # No track active: standard full-frame search
                 box, conf = full_frame_inference(sahi, processed)
+                detection_type["full_frame_search"] += 1
             # update Kalman + reinit CSRT on every accepted detection
             if box is not None:
                 x1,y1,x2,y2 = box
@@ -454,8 +463,8 @@ def run_pipeline(video_path: str, output_video_path: str = "output.mp4", output_
 
                 if kalman.confirmed:
                     det = Detection(frame_id, box, round(conf,4), source="detector")
-                    print(f"  Frame {frame_id:05d} | conf={conf:.3f} | "
-                          f"bbox={box} | hits={kalman.hits}")
+                    #print(f"  Frame {frame_id:05d} | conf={conf:.3f} | "
+                        #   f"bbox={box} | hits={kalman.hits}")
 
         # ── Non-inference frame: no detection, tracking and kalman ───────────────────────────────────────────────
         else:
@@ -480,7 +489,7 @@ def run_pipeline(video_path: str, output_video_path: str = "output.mp4", output_
         
         # expire after 30 frames with no detections
         if kalman is not None and kalman.age > 30:
-            print(f"  Frame {frame_id:05d}: track expired (age={kalman.age})")
+            #print(f"  Frame {frame_id:05d}: track expired (age={kalman.age})")
             kalman = None
             csrt.reset()
             current_infer_every = infer_every
@@ -503,15 +512,15 @@ def run_pipeline(video_path: str, output_video_path: str = "output.mp4", output_
             
             # Press 'q' to stop processing and save
             if cv2.waitKey(1) & 0xFF == ord('q'):
-                print("Interrupted by user.")
+                #print("Interrupted by user.")
                 break
         
 
         if frame_id % 200 == 0:
             elapsed = time.time() - start
             src = f"active(hits={kalman.hits})" if kalman else "lost"
-            print(f"[{frame_id}/{total}] {frame_id/elapsed:.1f} fps | "
-                  f"{det_count} dets | kalman={src} | csrt={csrt.active}")
+            #print(f"[{frame_id}/{total}] {frame_id/elapsed:.1f} fps | "
+                #   f"{det_count} dets | kalman={src} | csrt={csrt.active}")
 
     cap.release()
     writer.release()
@@ -522,7 +531,9 @@ def run_pipeline(video_path: str, output_video_path: str = "output.mp4", output_
 
     with open(output_json_path, 'w') as f:
         json.dump(all_dets, f, indent=2)
-    print(f"Saved: {output_video_path}  {output_json_path}")
+    with open('detection_type.json', 'w') as f:
+        json.dump(detection_type, f, indent=2)
+    #print(f"Saved: {output_video_path}  {output_json_path}")
 
 
 if __name__ == "__main__":
