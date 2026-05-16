@@ -62,7 +62,7 @@ Output JSON format (one entry per detected frame):
 | Clip 49 (1920×1080) | 1.3 | 0% | — | — |
 | Clip 50 (1920×1080) | 0.6 | 5.4% | 61% | ~4% |
 
-FPS measured on Intel i7-13700H CPU. Target deployment is Jetson Orin Nano (TensorRT FP16, projected 30-60 FPS after native resolution retraining).
+FPS measured on Intel i7-13700H CPU, using pt weights (the Demo video ran at 1.9 fps using onnx weights). Target deployment is Jetson Orin Nano (TensorRT FP16, projected 30-60 FPS after native resolution retraining).
 
 ---
 
